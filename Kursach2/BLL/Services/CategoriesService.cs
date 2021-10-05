@@ -20,26 +20,40 @@ namespace BLL.Servises
         }
         public async Task<bool> AddCategory(Category category)
         {
-            if(category != null)
+            try
             {
-                _context.Categories.Add(category);
-                await _context.SaveChangesAsync();
+                if (category != null)
+                {
+                    _context.Categories.Add(category);
+                    await _context.SaveChangesAsync();
 
-                return true;
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
-        public async Task<List<CategoryModel>> GetAllCategories()
+            public async Task<List<CategoryModel>> GetAllCategories()
         {
-            var categories = await _context.Categories.ToListAsync();
-            var categoryModels = new List<CategoryModel>();
-            foreach(var category in categories)
+            try
             {
-                categoryModels.Add(new CategoryModel() { Id = category.Id, CategoryName = category.CategoryName});
-            }
+                var categories = await _context.Categories.ToListAsync();
+                var categoryModels = new List<CategoryModel>();
+                foreach (var category in categories)
+                {
+                    categoryModels.Add(new CategoryModel() { Id = category.Id, CategoryName = category.CategoryName });
+                }
 
-            return categoryModels;
+                return categoryModels;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<bool> RmoveCategory(string name)
