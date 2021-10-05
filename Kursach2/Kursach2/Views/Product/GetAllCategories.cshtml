@@ -7,6 +7,13 @@
         <input class="btn btn-primary col-md-4 mt-2" type="button" onclick="AddCategory()" value="Add new category" />
     </div>
 </div>
+<div id="ContentDiv2" class="row justify-content-center align-items-center">
+    <h1 class="col-6 text-center">Remove Category</h1>
+    <div class="col-8 row justify-content-center align-items-center">
+        <input class="form-control" type="text" placeholder="Category name" id="categoryNameForRemove" />
+        <input class="btn btn-danger col-md-4 mt-2" type="button" onclick="RemoveCategory()" value="Remove category" />
+    </div>
+</div>
 <div class="row justify-content-center align-items-center">
     <h2 class="col-8 text-center mt-5">Categories list:</h2>
     <div class="col-8 text-center">
@@ -32,6 +39,16 @@
                 url: "AddCategory",
                 data: { CategoryName },
                 succsess: function () { alert('Characteristic added') },
+                error: function (res) { console.log(res) }
+            });
+        }
+        function RemoveCategory() {
+            let CategoryName = document.getElementById("categoryNameForRemove").value;
+            $.ajax({
+                method: "POST",
+                url: "RmoveCategory",
+                data: { CategoryName },
+                succsess: function () { alert('Category removed') },
                 error: function (res) { console.log(res) }
             });
         }

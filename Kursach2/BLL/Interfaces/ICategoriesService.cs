@@ -13,5 +13,7 @@ namespace BLL.Interfaces
         public Task<bool> AddCategory(Category category);
 
         public Task<List<CategoryModel>> GetAllCategories();
+
+        public Task<bool> RmoveCategory(string name);
     }
 }

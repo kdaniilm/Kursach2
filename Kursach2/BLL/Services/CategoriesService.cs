@@ -41,5 +41,20 @@ namespace BLL.Servises
 
             return categoryModels;
         }
+
+        public async Task<bool> RmoveCategory(string name)
+        {
+            try
+            {
+                var removeItem = _context.Categories.FirstOrDefault(c => c.CategoryName == name);
+                _context.Categories.Remove(removeItem);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

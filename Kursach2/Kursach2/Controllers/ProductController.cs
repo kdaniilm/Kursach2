@@ -88,6 +88,14 @@ namespace Kursach2.Controllers
         }
 
         [HttpPost]
+        public async Task<bool> RmoveCategory(CategoryModel categoryModel)
+        {
+            var res = await _categoriesService.RmoveCategory(categoryModel.CategoryName);
+
+                return res;
+        }
+
+        [HttpPost]
         public async Task AddCharacteristics(string characteristicName, string characteristicValue)
         {
              await Task.Run(() =>_charactristicModels.Add(new CharactristicModel() { CharacteristicName = characteristicName, CharacteristicValue = characteristicValue }));

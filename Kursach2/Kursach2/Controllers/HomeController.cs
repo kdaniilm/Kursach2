@@ -1,6 +1,7 @@
 ﻿using BLL.Interfaces;
 using BLL.Servises;
 using Kursach2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,7 +22,6 @@ namespace Kursach2.Controllers
             _logger = logger;
             _categoriesService = categoriesService;
         }
-
         public async Task<IActionResult> Index()
         {
             var categories = await _categoriesService.GetAllCategories();
