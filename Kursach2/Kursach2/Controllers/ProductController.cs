@@ -80,6 +80,14 @@ namespace Kursach2.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult> GetOneProduct(string id)
+        {
+            var product = await _productService.GetOneProduct(id);
+
+            return View(product);
+        }
+
+        [HttpPost]
         public async Task<bool> RemoveProduct(string id)
         {
             var res = await _productService.RemoveProduct(id);
@@ -120,14 +128,6 @@ namespace Kursach2.Controllers
         {
             var category = _mapper.Map<Category>(categoryModel);
             await _categoriesService.AddCategory(category);
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> GetOneProduct(string id)
-        {
-            var product = await _productService.GetOneProduct(id);
-
-            return View(product);
         }
 
         [HttpGet]

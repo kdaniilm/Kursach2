@@ -3,7 +3,8 @@
 <div class="row mt-2 ms-2">
     @foreach (var product in Model)
     {
-        <div class="card mb-2 me-1" style="width: 23rem;">
+        <div class="card mb-2 me-1" style="width: 23rem;" onclick="GetOneProduct(this)">
+            <input  productId="@product.ProductModel.Id" type="hidden"/>
             @if (product.Images.Count > 0)
             {
                 <img class="card-img-top" src=@product.Images[0] />
@@ -36,6 +37,18 @@
                 url: "RemoveProduct",
                 data: { id },
                 succsess: function () { alert('product removed') },
+                error: function (res) { console.log(res) }
+            });
+        }
+        function GetOneProduct(value) {
+            let id = value.children[0].getAttribute("productId");
+            alert(id);
+            console.log(id);
+            $.ajax({
+                method: "POST",
+                url: "GetOneProduct",
+                data: { id },
+                succsess: function () { alert('product get') },
                 error: function (res) { console.log(res) }
             });
         }

@@ -572,7 +572,6 @@ C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Domain\bin\Debug\net5.0\refs\Sy
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Domain\bin\Debug\net5.0\refs\System.Xml.XPath.dll
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Domain\bin\Debug\net5.0\refs\System.Xml.XPath.XDocument.dll
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Domain\bin\Debug\net5.0\refs\WindowsBase.dll
-C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs

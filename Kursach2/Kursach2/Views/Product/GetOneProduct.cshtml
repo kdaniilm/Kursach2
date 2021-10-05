@@ -1,0 +1,22 @@
+﻿@model Domain.ViewModels.ProductViewModel
+
+<div class="row mt-2 ms-2">
+            <input productId="@Model.ProductModel.Id" type="hidden" />
+            @if(Model.Images.Count > 0)
+            {
+                <img class="card-img-top" src=Model.Images[0] />
+            }
+            <div>
+                <h4>@Model.ProductModel.ProductName</h4>
+                <label>Price: @Model.ProductModel.ProductPrice</label>
+                <div>
+                    <h5>Characteristics:</h5>
+                    <div>
+                        @foreach (var charactristic in Model.CharactristicModels)
+                        {
+                            <p>@charactristic.CharacteristicName: &nbsp; @charactristic.CharacteristicValue;</p>
+                        }
+                    </div>
+                </div>
+        </div>
+</div>
