@@ -35,6 +35,7 @@ namespace Kursach2.Controllers
         }
 
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public async Task<ActionResult> AddProduct(List<IFormFile> files, string ProductName, float ProductPrice, string Category)
         {
             try
@@ -90,23 +91,25 @@ namespace Kursach2.Controllers
             var categories = await _categoriesService.GetAllCategories();
             return await Task.Run(() => View(categories));
         }
-
         public async Task<List<ProductViewModel>> GetAllProducts()
         {
             var productList = await _productService.GetAllProducts();
 
             return productList;
         }
-        public async Task<IActionResult> AddCategory(CategoryModel categoryModel)
+
+        [HttpPost]
+        public async Task AddCategory(CategoryModel categoryModel)
         {
             var category = _mapper.Map<Category>(categoryModel);
             await _categoriesService.AddCategory(category);
-            return new EmptyResult();
         }
-        public async Task<List<CategoryModel>> GetAllCategories()
+
+        [HttpGet]
+        public async Task<ActionResult> GetAllCategories()
         {
             var result = await _categoriesService.GetAllCategories();
-            return result;
+            return View(result);
         }
     }
 }

@@ -4,6 +4,7 @@
     @foreach (var product in Model)
     {
         <div class="card mb-2 me-1" style="width: 23rem;">
+            <input type="hidden" value=@product.ProductModel.Id/>
             @if (product.Images.Count > 0)
             {
             <img class="card-img-top" src=@product.Images[0] />

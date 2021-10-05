@@ -2,6 +2,7 @@
 using BLL.Servises;
 using Domain.Entities;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
