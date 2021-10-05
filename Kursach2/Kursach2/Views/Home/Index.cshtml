@@ -4,7 +4,10 @@
     @foreach (var product in Model)
     {
         <div class="card mb-2 me-1" style="width: 23rem;">
-            <img class="card-img-top" src="" />
+            @if (product.Images.Count > 0)
+            {
+            <img class="card-img-top" src=@product.Images[0] />
+            }
             <div class="card-body">
                 <h4 class="card-title">@product.ProductModel.ProductName</h4>
                 <label>Price: @product.ProductModel.ProductPrice</label>

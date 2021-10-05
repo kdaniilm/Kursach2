@@ -3,6 +3,8 @@ using Core.Context;
 using Domain.Entities;
 using Domain.Models;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,7 @@ namespace BLL.Servises
         {
             _context = context;
         }
-        public async Task<bool> AddProduct(Product product, List<Characteristic> characteristics, string categoryId, List<string> imagePathes)
+        public async Task<bool> AddProduct(Product product, List<Characteristic> characteristics, string categoryId, List<string> images)
         {
             if (product != null && characteristics != null && categoryId != null)
             {
@@ -35,7 +37,7 @@ namespace BLL.Servises
                 }
                 await _context.SaveChangesAsync();
 
-                foreach(var imagePath in imagePathes)
+                foreach(var imagePath in images)
                 {
                     _context.Images.Add(new Image() { ImgPath = imagePath, Product = product});
                 }
@@ -44,6 +46,7 @@ namespace BLL.Servises
             }
             return false;
         }
+
         public async Task<List<ProductViewModel>> GetAllProducts()
         {
             var result = new List<ProductViewModel>();
