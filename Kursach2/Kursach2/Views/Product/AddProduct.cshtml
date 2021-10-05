@@ -1,44 +1,47 @@
 ﻿@model List<Domain.Models.CategoryModel>
 
-<div class="col-md-2"></div>
-<div id="ContentDiv" class="col-md-8">
-    <h1>Add new product</h1>
-@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-        <input type="file" name="files"/>
-        <input class="form-control" type="text" placeholder="product name" name="ProductName"/>
-        <input class="form-control" type="number" placeholder="product price" name="ProductPrice" />
-        <select name="Category">
-            @foreach(var category in Model)
-             {
-                <option value=@category.Id>@category.CategoryName</option>
-             }
-        </select>
-        <div class="input-group">
-            <h3>Characteristics</h3>
-            <div class="col">
-                <div class="row" id="characteristicDiv">
+    <div class="col-md-2"></div>
+    <div class="row justify-content-center align-items-center">
+        <div id="ContentDiv" class="col-md-8">
+            <h1>Add new product</h1>
+            @using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="files" />
+                <input class="form-control mt-2" type="text" placeholder="product name" name="ProductName" />
+                <input class="form-control mt-2" type="number" placeholder="product price" name="ProductPrice" />
+                <select class="form-control mt-2" name="Category">
+                    @foreach (var category in Model)
+                    {
+                        <option value=@category.Id>@category.CategoryName</option>
+                    }
+                </select>
+                <div class="input-group row justify-content-center align-items-center">
+                    <h3>Characteristics</h3>
+                    <div class="col">
+                        <div class="row" id="characteristicDiv">
+                        </div>
+                    </div>
+                    <input class="btn btn-primary col-6" type="button" value="Add characteristic" onclick="AddCharacteristic()" />
                 </div>
-            </div>
-            <input class="btn-primary" type="button" value="Add characteristic" onclick="AddCharacteristic()" />
+                <input class="col-12 btn btn-primary mt-2" type="submit" value="Add" />
+            }
         </div>
-        <input class="btn-primary" type="submit" value="Add" />
-}
-</div>
-<div class="col-md-2"></div>
-@section scripts{ 
-<script>
-    function AddCharacteristic() {
-        let characteristicName = prompt("Insert characteristic name:", "Default name");
-        let characteristicValue = prompt("Insert characteristic Value:", "Default Value");
+        </div>
+        <div class="col-md-2"></div>
+        @section scripts{
+            <script>
+                function AddCharacteristic() {
+                    let characteristicName = prompt("Insert characteristic name:", "Default name");
+                    let characteristicValue = prompt("Insert characteristic Value:", "Default Value");
 
-        $.ajax({
-            method: "POST",
-            url: "AddCharacteristics",
-            data: { characteristicName, characteristicValue },
-            succsess: function () { alert('Characteristic added') },
-            error: function (res) { console.log(res) }
-        });
-    }
-</script>
-}
+                    let res = document.getElementById("characteristicDiv");
+                    $.ajax({
+                        method: "POST",
+                        url: "AddCharacteristics",
+                        data: { characteristicName, characteristicValue },
+                        succsess: function () { res.innerHTML += "<span>" + "characteristicName" + "&nbsp;&nbsp;&nbsp;&nbsp;" + "characteristicValue" + "</span>" },
+                        error: function (res) { console.log(res) }
+                    });
+                }
+            </script>
+        }

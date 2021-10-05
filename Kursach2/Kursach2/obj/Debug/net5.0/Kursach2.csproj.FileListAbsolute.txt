@@ -797,3 +797,5 @@ C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Kursach2\obj\Debug\net5.0\Kursa
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Kursach2\obj\Debug\net5.0\Kursach2.genruntimeconfig.cache
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Kursach2\obj\Debug\net5.0\Razor\Views\Product\AddProduct.cshtml.g.cs
 C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Kursach2\obj\Debug\net5.0\Razor\Views\Product\GetAllCategories.cshtml.g.cs
+C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Kursach2\obj\Debug\net5.0\Razor\Views\Product\Product.cshtml.g.cs
+C:\Users\User\Documents\GitHub\Kursach2\Kursach2\Kursach2\obj\Debug\net5.0\Razor\Views\Product\GetAllProducts.cshtml.g.cs

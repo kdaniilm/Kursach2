@@ -71,12 +71,20 @@ namespace Kursach2.Controllers
                     var categoryId = Category;
                     var res = await _productService.AddProduct(product, characteristics, categoryId, _images);
                 }
-                return StatusCode(200);
+                return View("AddProduct", await _categoriesService.GetAllCategories());
             }
             catch(Exception ex)
             {
                 return StatusCode(500, ex);
             }
+        }
+
+        [HttpPost]
+        public async Task<bool> RemoveProduct(string id)
+        {
+            var res = await _productService.RemoveProduct(id);
+
+            return res;
         }
 
         [HttpPost]
@@ -91,11 +99,12 @@ namespace Kursach2.Controllers
             var categories = await _categoriesService.GetAllCategories();
             return await Task.Run(() => View(categories));
         }
-        public async Task<List<ProductViewModel>> GetAllProducts()
+        public async Task<ActionResult> GetAllProducts(string CategoryId)
         {
-            var productList = await _productService.GetAllProducts();
+            var category = new CategoryModel() { Id = CategoryId };
+            var productList = await _productService.GetProductsWithFilters(category);
 
-            return productList;
+            return View(productList);
         }
 
         [HttpPost]
@@ -103,6 +112,14 @@ namespace Kursach2.Controllers
         {
             var category = _mapper.Map<Category>(categoryModel);
             await _categoriesService.AddCategory(category);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetOneProduct(string id)
+        {
+            var product = await _productService.GetOneProduct(id);
+
+            return View(product);
         }
 
         [HttpGet]

@@ -1,0 +1,43 @@
+﻿@model List<Domain.ViewModels.ProductViewModel>
+
+<div class="row mt-2 ms-2">
+    @foreach (var product in Model)
+    {
+        <div class="card mb-2 me-1" style="width: 23rem;">
+            @if (product.Images.Count > 0)
+            {
+                <img class="card-img-top" src=@product.Images[0] />
+            }
+            <div class="card-body">
+                <h4 class="card-title">@product.ProductModel.ProductName</h4>
+                <label>Price: @product.ProductModel.ProductPrice</label>
+                <div>
+                    <h5>Characteristics:</h5>
+                    <div>
+                        @foreach (var charactristic in product.CharactristicModels)
+                        {
+                            <p>@charactristic.CharacteristicName: &nbsp; @charactristic.CharacteristicValue;</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <input productId="@product.ProductModel.Id" class="btn btn-danger" type="button" value="RemoveProduct" onclick="GetProduct(this)" />
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script>
+        function GetProduct(value) {
+            let id = value.getAttribute("productId");
+            console.log(id);
+            $.ajax({
+                method: "POST",
+                url: "RemoveProduct",
+                data: { id },
+                succsess: function () { alert('product removed') },
+                error: function (res) { console.log(res) }
+            });
+        }
+    </script>
+}

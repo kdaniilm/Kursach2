@@ -1,27 +1,13 @@
-﻿@model List<Domain.ViewModels.ProductViewModel>
+﻿@model List<Domain.Models.CategoryModel>
 
-<div class="row mt-2 ms-2">
-    @foreach (var product in Model)
-    {
-        <div class="card mb-2 me-1" style="width: 23rem;">
-            <input type="hidden" value=@product.ProductModel.Id/>
-            @if (product.Images.Count > 0)
-            {
-            <img class="card-img-top" src=@product.Images[0] />
-            }
-            <div class="card-body">
-                <h4 class="card-title">@product.ProductModel.ProductName</h4>
-                <label>Price: @product.ProductModel.ProductPrice</label>
-                <div>
-                    <h5>Characteristics:</h5>
-                    <div>
-                        @foreach (var charactristic in product.CharactristicModels)
-                        {
-                            <p>@charactristic.CharacteristicName: &nbsp; @charactristic.CharacteristicValue;</p>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="row justify-content-center align-items-center">
+    @using (Html.BeginForm("GetAllProducts", "Product", FormMethod.Post)) { 
+    <select name="CategoryId">
+        @foreach (var category in Model)
+        {
+            <option name="CategoryId" value=@category.Id>@category.CategoryName</option>
+        }
+    </select>
+    <input class="btn btn-primary" value="Show Products" type="submit"/>
     }
 </div>

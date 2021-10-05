@@ -14,24 +14,21 @@ namespace Kursach2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IProductService _productService;
+        private readonly ICategoriesService _categoriesService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService)
+        public HomeController(ILogger<HomeController> logger, ICategoriesService categoriesService)
         {
             _logger = logger;
-            _productService = productService;
+            _categoriesService = categoriesService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.GetAllProducts();
-            return View(products);
+            var categories = await _categoriesService.GetAllCategories();
+            return View(categories);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
